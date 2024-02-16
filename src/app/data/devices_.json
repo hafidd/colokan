@@ -1,0 +1,65 @@
+[
+    {
+        "id": "a1f61c15-37a2-41ec-8d67-dee3236f99b0",
+        "name": "clx01",
+        "address": "http://192.168.1.197:8877",
+        "relays": [
+            {
+                "id": 1,
+                "active": false
+            },
+            {
+                "id": 2,
+                "name": "Fan",
+                "active": true
+            },
+            {
+                "id": 3,
+                "active": false
+            },
+            {
+                "id": 4,
+                "active": false
+            }
+        ],
+        "schedules": [
+            {
+                "id": "c0a25d9e-7715-4fad-8eef-46e59d179acf",
+                "time": "01:30",
+                "relay": 1,
+                "active": false
+            },
+            {
+                "id": "c021a2ec-5190-4cf0-8fc7-312f265cc02f",
+                "time": "04:00",
+                "relay": 4,
+                "active": true
+            }
+        ]
+    },
+    {
+        "id": "7cdcd07d-aa83-419a-b9c5-0bbdd65cffed",
+        "name": "clx02",
+        "address": "http://192.168.1.145:8877",
+        "relays": [
+            {
+                "id": 1,
+                "name": "",
+                "active": false
+            },
+            {
+                "id": 2,
+                "name": "",
+                "active": true
+            }
+        ],
+        "schedules": [
+            {
+                "id": "2f6345ac-54eb-44da-9b09-4dd34c77e257",
+                "time": "21:30",
+                "relay": 1,
+                "active": false
+            }
+        ]
+    }
+]

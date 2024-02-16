@@ -1,0 +1,10 @@
+[
+    {
+        "id": "a1f61c15-37a2-41ec-8d67-dee3236f99b0",
+        "name": "clx01",
+        "address": "http://192.168.18.11:8877",
+        "error": false,
+        "relays": [],
+        "schedules": []
+    }
+]
