@@ -2,14 +2,16 @@
 
 // import { useEffect, useState } from "react"
 import useSWR from 'swr'
+import config from '../../next.config.mjs'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 export default function Home() {
+  const { basePath } = config
   // const [data, setData] = useState({ message: '', devices: [] });
   // const [x, setX] = useState({ x: 'a', xf: true });
 
-  const { data, error, mutate } = useSWR('/api/devices', fetcher)
+  const { data, error, mutate } = useSWR(`${basePath}/api/devices`, fetcher)
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
@@ -45,7 +47,7 @@ export default function Home() {
 
   const toggleRelay = async (deviceId: string, relayIndex: number, relayName: string) => {
     try {
-      const res = await fetch(`/api/device/${deviceId}/toggle-relay/${relayIndex + 1}`)
+      const res = await fetch(`${basePath}/api/device/${deviceId}/toggle-relay/${relayIndex + 1}`)
       const { message } = await res.json()
 
       if (message !== 'ok') throw new Error(message)
