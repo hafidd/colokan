@@ -3,6 +3,8 @@
         "id": "a1f61c15-37a2-41ec-8d67-dee3236f99b0",
         "name": "clx01",
         "address": "http://192.168.1.197:8877",
+        "scheduleByDay": false,
+        "error": false,
         "relays": [
             {
                 "id": 1,
@@ -41,6 +43,8 @@
         "id": "7cdcd07d-aa83-419a-b9c5-0bbdd65cffed",
         "name": "clx02",
         "address": "http://192.168.1.145:8877",
+        "scheduleByDay": true,
+        "error": false,
         "relays": [
             {
                 "id": 1,
@@ -58,7 +62,8 @@
                 "id": "2f6345ac-54eb-44da-9b09-4dd34c77e257",
                 "time": "21:30",
                 "relay": 1,
-                "active": false
+                "active": false,
+                "days": [0,6]
             }
         ]
     }

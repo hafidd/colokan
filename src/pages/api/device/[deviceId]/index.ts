@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { promises as fs } from 'fs';
-import { getDeviceStatus } from '../../../../app/services/device.service';
+import { getDeviceStatus, getDeviceSchedules } from '../../../../app/services/device.service';
 
 type ResponseData = {
     message: string,
@@ -24,10 +24,15 @@ export default async function handler(
 
     const status = await getDeviceStatus(device.address);
 
+    device.schedules = await getDeviceSchedules(device.address);
+    console.log('device schedules', device.schedules)
+
     let i = 1;
     status.data.forEach((status: any) => {
         device.relays = [...device.relays ?? [], { name: 'r' + i++, active: status == 1 }];
     });
+
+    console.log('device', device)
 
     res.status(200).json({ message: '', device })
 }

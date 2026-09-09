@@ -11,21 +11,31 @@ export default async function handler(
     res: NextApiResponse<ResponseData>
 ) {
     const file = await fs.readFile(process.cwd() + '/src/app/data/devices.json', 'utf8');
-    let devices = JSON.parse(file);
+    const devices = JSON.parse(file);
 
     const deviceId = req.query.deviceId ?? null
     const relayIndex = req.query.relayIndex ?? null
 
     const device = devices.find((device: DeviceData) => device.id == deviceId)
     if (!device) {
-        res.status(404).json({ message: 'device not found' })
+        return res.status(404).json({ message: 'device not found' })
     }
 
-    try {
-        await toggleRelay(device.address, relayIndex);
-        res.status(200).json({ message: 'ok' })
-    } catch {
-        res.status(400).json({ message: 'failed' })
+    if (relayIndex === null || relayIndex === undefined) {
+        return res.status(400).json({ message: 'relay is required' })
     }
+
+    const relayNumber = Number(relayIndex)
+    if (!Number.isInteger(relayNumber) || relayNumber < 1) {
+        return res.status(400).json({ message: 'invalid relay index' })
+    }
+
+    const result = await toggleRelay(device.address, relayNumber)
+
+    if (!result.success) {
+        return res.status(400).json({ message: 'failed' })
+    }
+
+    return res.status(200).json({ message: 'ok' })
 
 }
